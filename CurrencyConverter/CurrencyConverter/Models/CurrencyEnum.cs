@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CurencyConverter.Models
+namespace CurrencyConverter.Models
 {
     public enum CurrencyEnum
     {

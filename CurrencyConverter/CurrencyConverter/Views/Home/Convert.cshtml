@@ -1,0 +1,49 @@
+﻿@model CurrencyConverter.Models.Converter
+
+@{
+    ViewData["Title"] = "Convert";
+}
+<div class="col-md-6 offset-md-3">
+    <div class="row text-center">
+        <h1>Welcome, @ViewData["Name"]</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Convert">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FromCurrency" class="control-label"></label>
+                    <select asp-for="FromCurrency" class="form-control"
+                            asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
+                        <option>Select Base Currency ...</option>
+                    </select>
+                    <span asp-validation-for="FromCurrency" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FromAmmount" class="control-label"></label>
+                    <input asp-for="FromAmmount" class="form-control" />
+                    <span asp-validation-for="FromAmmount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ToCurrency" class="control-label"></label>
+                    <select asp-for="ToCurrency" class="form-control"
+                            asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
+                        <option>Select Currency To Exchange...</option>
+                    </select>
+                    <span asp-validation-for="ToCurrency" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Convert" class="btn btn-block btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
