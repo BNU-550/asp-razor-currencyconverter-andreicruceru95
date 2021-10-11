@@ -3,47 +3,70 @@
 @{
     ViewData["Title"] = "Convert";
 }
+<div class="jumbotron">
+
 <div class="col-md-6 offset-md-3">
     <div class="row text-center">
-        <h1>Welcome, @ViewData["Name"]</h1>
+        <h2>Welcome, @ViewData["Name"]</h2>
     </div>
+    <br />
+    <hr />
     <div class="row">
-        <div class="col-md-6">
             <form asp-action="Convert">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="FromCurrency" class="control-label"></label>
-                    <select asp-for="FromCurrency" class="form-control"
-                            asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
-                        <option>Select Base Currency ...</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="FromCurrency" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9">
+                            <select asp-for="FromCurrency" class="form-control"
+                                    asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
+                                <option>Select Base Currency ...</option>
+                            </select>
+                        </div>
+                    </div>        
                     <span asp-validation-for="FromCurrency" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ToCurrency" class="control-label"></label>
-                    <select asp-for="ToCurrency" class="form-control"
-                            asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
-                        <option>Select Currency To Exchange...</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="ToCurrency" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9">
+                            <select asp-for="ToCurrency" class="form-control"
+                                    asp-items="Html.GetEnumSelectList<CurrencyEnum>()">
+                                <option>Select Currency To Exchange...</option>
+                            </select>
+                        </div>
+                    </div>                    
                     <span asp-validation-for="ToCurrency" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="FromAmmount" class="control-label"></label>
-                    <input asp-for="FromAmmount" class="form-control" />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="FromAmmount" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="FromAmmount" class="form-control" />
+                        </div>
+                    </div>
                     <span asp-validation-for="FromAmmount" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Convert" class="btn btn-block btn-primary" />
+                    <div class="col-md-6 offset-md-3">
+                        <input type="submit" value="Convert" class="btn btn-block btn-primary" />
+                    </div>                    
                 </div>
             </form>
-        </div>
     </div>
     <div class="row">
-        <div class="col-md-6 text-center">
-           <h1>@ViewData["Rate"]</h1>
+        <div class="col-md-6 offset-md-3 text-center">
+           <h2>@ViewData["Rate"]</h2>
         </div>
     </div>
 </div>
+    </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
