@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CurrencyConverter.Models
 {
+    /// <summary>
+    /// Provides Currency Choices to the user to chose from.
+    /// Also provides currency codes to the program, us.
+    /// </summary>
     public enum CurrencyEnum
     {
         [Display(Name=("United Arab Emirates Dirham"))]

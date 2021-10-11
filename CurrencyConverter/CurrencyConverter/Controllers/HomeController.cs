@@ -19,11 +19,13 @@ namespace CurrencyConverter.Controllers
         {
             _logger = logger;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
             return View();//input);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(UserInput input)
@@ -39,6 +41,7 @@ namespace CurrencyConverter.Controllers
             ViewData["Name"] = name;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Convert(Converter data)
@@ -52,16 +55,18 @@ namespace CurrencyConverter.Controllers
             if(currency.Success == "true")
             {
                 double baseConversion = 1 / currency.Rates[baseCurrency];
-                double toConversion = 1 / currency.Rates[toCurrency];
+                double toConversion = currency.Rates[toCurrency];
 
-                double rate = baseConversion * toConversion;
+                double rate = amount * baseConversion * toConversion;
                 rate = Math.Round(rate, 2);
 
-                ViewData["Rate"] = rate;
+                HttpContext.Session.SetString("Rate", rate.ToString());
+                ViewData["Rate"] = HttpContext.Session.GetString("Rate");
             }
             
             return View();
         }
+
         private async Task<Currency> GetData()
         {
             HttpClient client = new HttpClient();

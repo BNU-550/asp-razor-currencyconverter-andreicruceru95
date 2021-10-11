@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CurrencyConverter.Models
 {
+    /// <summary>
+    /// Form model for the user name and email input.
+    /// </summary>
     public class UserInput
     {
         [Required]

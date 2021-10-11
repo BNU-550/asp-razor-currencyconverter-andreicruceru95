@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace CurrencyConverter.Models
 {
+    /// <summary>
+    /// Provides object model for the JSON data extracted.
+    /// </summary>
     public class Currency
     {
         public string Success { get; set; }

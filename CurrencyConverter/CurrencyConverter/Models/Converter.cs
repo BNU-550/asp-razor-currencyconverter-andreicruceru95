@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CurrencyConverter.Models
 {   
+    /// <summary>
+    /// Provides model for the Convertor app form.
+    /// </summary>
     public class Converter
     {       
         [Required]
@@ -19,6 +22,7 @@ namespace CurrencyConverter.Models
 
         [Required]
         [Display(Name = "Exchange Currency")]
+        [Unlike("FromCurrency")]
         public CurrencyEnum ToCurrency { get; set; }        
     }
 }
