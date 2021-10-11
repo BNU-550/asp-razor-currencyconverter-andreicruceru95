@@ -8,6 +8,7 @@
 <div class="col-md-6 offset-md-3">
     <div class="row text-center">
         <h2>Welcome, @ViewData["Name"]</h2>
+        <h2></h2>
     </div>
     <br />
     <hr />
@@ -61,8 +62,21 @@
             </form>
     </div>
     <div class="row">
-        <div class="col-md-6 offset-md-3 text-center">
-           <h2>@ViewData["Rate"]</h2>
+        <div class="col-md-12 text-center">
+            @{
+                try
+                {
+                    if (ViewData["Rate"] != null)
+                    {
+                        <h3>@ViewData["Amount"] @ViewData["From"] equals @ViewData["Rate"] @ViewData["To"]</h3>
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
         </div>
     </div>
 </div>

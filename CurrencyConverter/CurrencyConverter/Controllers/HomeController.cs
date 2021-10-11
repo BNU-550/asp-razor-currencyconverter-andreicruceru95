@@ -14,7 +14,7 @@ namespace CurrencyConverter.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         const string API_KEY = "e5545d3251a369e6791a2dd967fe686f";
-
+        
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -30,15 +30,20 @@ namespace CurrencyConverter.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(UserInput input)
         {
-            HttpContext.Session.SetString("Name", input.Name);
+           HttpContext.Session.SetString("Name", input.Name);
+
             return RedirectToAction("Convert");
         }
 
         [HttpGet]
         public IActionResult Convert()
         {
-            string name = HttpContext.Session.GetString("Name");
-            ViewData["Name"] = name;
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("Name")))
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewData["Name"] = HttpContext.Session.GetString("Name");
             return View();
         }
 
@@ -46,6 +51,16 @@ namespace CurrencyConverter.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Convert(Converter data)
         {
+            ViewData["Name"] = HttpContext.Session.GetString("Name");
+            ViewData["From"] = data.FromCurrency.ToString();
+            ViewData["To"] = data.ToCurrency.ToString();
+            ViewData["Amount"] = data.FromAmmount.ToString();
+
+            if (data.FromCurrency == data.ToCurrency)
+            {
+                return View();
+            }
+
             string baseCurrency = data.FromCurrency.ToString();
             string toCurrency = data.ToCurrency.ToString();
             double amount = data.FromAmmount;
@@ -60,8 +75,8 @@ namespace CurrencyConverter.Controllers
                 double rate = amount * baseConversion * toConversion;
                 rate = Math.Round(rate, 2);
 
-                HttpContext.Session.SetString("Rate", rate.ToString());
-                ViewData["Rate"] = HttpContext.Session.GetString("Rate");
+                //HttpContext.Session.SetString("Rate", rate.ToString());
+                ViewData["Rate"] = rate; //HttpContext.Session.GetString("Rate");
             }
             
             return View();

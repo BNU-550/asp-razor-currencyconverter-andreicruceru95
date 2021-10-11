@@ -13,6 +13,7 @@ namespace CurrencyConverter.Models
     {       
         [Required]
         [Display(Name ="Base Currency")]
+        [Unlike("ToCurrency")]
         public CurrencyEnum FromCurrency { get; set; }
 
         [Required]
