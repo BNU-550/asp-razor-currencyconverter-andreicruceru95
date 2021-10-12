@@ -9,7 +9,7 @@ namespace CurrencyConverter.Models
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class UnlikeAttribute : ValidationAttribute
     {
-        private const string DefaultErrorMessage = "The values cannot be the same.";
+        private const string DefaultErrorMessage = "The currencies cannot be the same.";
 
         public string OtherProperty { get; private set; }
 

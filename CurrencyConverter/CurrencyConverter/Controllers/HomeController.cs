@@ -23,7 +23,7 @@ namespace CurrencyConverter.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();//input);
+            return View();
         }
 
         [HttpPost]
@@ -75,8 +75,7 @@ namespace CurrencyConverter.Controllers
                 double rate = amount * baseConversion * toConversion;
                 rate = Math.Round(rate, 2);
 
-                //HttpContext.Session.SetString("Rate", rate.ToString());
-                ViewData["Rate"] = rate; //HttpContext.Session.GetString("Rate");
+                ViewData["Rate"] = rate;
             }
             
             return View();
